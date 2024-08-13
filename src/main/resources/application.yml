@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: mybot-whatsapp-consumer
+server:
+  port: 8081
+topics:
+  retry: 'mybot-whatsapp-topic.RETRY'
+  dlt: 'mybot-whatsapp-topic.DLT'
+
+---
+spring:
+  kafka:
+    topic:  mybot-whatsapp-topic
+    template:
+      default-topic: mybot-whatsapp-topic
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: mybot-whatsapp-consumer
+      auto-offset-reset: latest
